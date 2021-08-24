@@ -5,7 +5,7 @@ module.exports = {
   mode: "development",
   devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, './'),
+    path: path.resolve(__dirname, './publish/'),
     filename: 'colors.js',
   },
   module: {
