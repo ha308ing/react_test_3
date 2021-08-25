@@ -1,0 +1,25 @@
+:root {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  line-height: 1;
+}
+
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 80%;
+  position: absolute;
+  left: 10%;
+  top: 5%;
+  margin: 0;
+  padding: .5em;
+  font-size: 1rem;
+  height: 90%;
+  box-shadow: 0 .2em 1em .1em #ccc;
+  border-radius: .3em;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { useColors } from "./color-hooks";
+import { useColors } from "./color-hooks"
+import styles from "../css/addColor.module.css"
 
 const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
@@ -39,44 +40,44 @@ export default function addColor() {
   }
 
   return (
-    <form onSubmit={submit(currentColor)}>
-      <fieldset>
-
-        <label>
+    <form className={styles.form} onSubmit={submit(currentColor)}>
+        <label className={styles.label}>
           id:{" "}
           <input
             {...idProps}
+            className={styles.input}
             type="nubmer"
             size="4" />
-        </label>{" "}
+        </label><br />
 
-        <label>
+        <label className={styles.label}>
           name:{" "}
           <input
             {...nameProps}
+            className={styles.input}
             type="text"
             size="12" />
-        </label>{" "}
+        </label><br />
 
-        <label>
+        <label className={styles.label}>
           color:{" "}
           <input
             {...colorProps}
+            className={styles.input}
             type="color" />
-        </label>{" "}
+        </label><br />
 
-        <label>
+        <label className={styles.label}>
           rating:{" "}
           <input
             {...ratingProps}
+            className={styles.input}
             type="nubmer"
             min="0" max="5"
             size="12" />
-        </label>{"\n"}
+        </label><br />
 
-        <input type="submit" value="Add Color" />
-
-      </fieldset>
+        <input className={styles.button + " " + styles.button__centered} type="submit" value="Add Color" />
     </form>
   )
 }

@@ -1,0 +1,8 @@
+.colorList_container {
+  justify-content: space-around;
+  /* box-shadow: 0 .2em 1em .1em #ccc; */
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  overflow-y: auto;
+}

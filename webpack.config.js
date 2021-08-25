@@ -21,6 +21,29 @@ module.exports = {
       options: {
         presets: ["@babel/preset-env", "@babel/preset-react"]
       }
+    },
+    {
+      test: /\.css$/,
+      exclude: [
+        path.resolve(__dirname, "node_modules")
+      ],
+      include: [
+        path.resolve(__dirname, "css")
+      ],
+      use: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+          }
+        },
+        {
+          loader: 'postcss-loader'
+        }
+      ]
     }]
   }
 };

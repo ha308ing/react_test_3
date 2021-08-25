@@ -1,0 +1,37 @@
+.form {
+  width: 10em;
+  background: #fff;
+  border: hidden;
+  position: relative;
+  padding: .3em;
+}
+
+.label {
+  display: flex;
+  flex-flow: row nowrap;
+  line-height: 2em;
+}
+
+.input {
+  margin-left: 1em;
+  width: 100%;
+}
+
+.button {
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 .2em .5em .1em #ccc, 0 0 1em .1em #fff;
+  font-size: 1.1em;
+  padding: .2em .6em;
+  display: block;
+  margin: auto;
+}
+
+.button:hover {
+  transform: translateY(-.1em);
+  box-shadow: 0 0.1em .1em .1em #eee;
+}
+
+.button__centered {
+  text-transform: capitalize;
+  margin: auto;
+}
