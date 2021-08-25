@@ -14,6 +14,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _color_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./color-hooks */ "./js/color-hooks.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -28,73 +30,88 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function addColor() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1234),
+
+var useInput = function useInput(initialValue) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialValue),
       _useState2 = _slicedToArray(_useState, 2),
-      id = _useState2[0],
-      setId = _useState2[1];
+      value = _useState2[0],
+      setValue = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("cyan"),
-      _useState4 = _slicedToArray(_useState3, 2),
-      name = _useState4[0],
-      setName = _useState4[1];
+  return [{
+    value: value,
+    onChange: function onChange(event) {
+      return setValue(event.target.value);
+    }
+  }, function () {
+    return setValue(initialValue);
+  }];
+};
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("#74ffff"),
-      _useState6 = _slicedToArray(_useState5, 2),
-      color = _useState6[0],
-      setColor = _useState6[1];
+function addColor() {
+  var _useInput = useInput(1234),
+      _useInput2 = _slicedToArray(_useInput, 2),
+      idProps = _useInput2[0],
+      resetId = _useInput2[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(3),
-      _useState8 = _slicedToArray(_useState7, 2),
-      rating = _useState8[0],
-      setRating = _useState8[1];
+  var _useInput3 = useInput("cyan"),
+      _useInput4 = _slicedToArray(_useInput3, 2),
+      nameProps = _useInput4[0],
+      resetName = _useInput4[1];
+
+  var _useInput5 = useInput("#74ffff"),
+      _useInput6 = _slicedToArray(_useInput5, 2),
+      colorProps = _useInput6[0],
+      resetColor = _useInput6[1];
+
+  var _useInput7 = useInput(3),
+      _useInput8 = _slicedToArray(_useInput7, 2),
+      ratingProps = _useInput8[0],
+      resetRating = _useInput8[1];
 
   var _useColors = (0,_color_hooks__WEBPACK_IMPORTED_MODULE_1__.useColors)(),
       addColor = _useColors.addColor,
       idList = _useColors.idList;
 
+  var resetProps = function resetProps() {
+    resetId();
+    resetName();
+    resetColor();
+    resetRating();
+  };
+
+  var currentColor = {
+    id: idProps.value,
+    name: nameProps.value,
+    color: colorProps.value,
+    rating: ratingProps.value
+  };
+
   var submit = function submit(color) {
     return function (event) {
       event.preventDefault();
-      if (idList.includes(id)) alert("Duplicate id. Please change.");else addColor(color);
-    };
-  };
-
-  var setState = function setState(f) {
-    return function (event) {
-      return f(event.target.value);
+      if (idList.includes(color.id)) alert("Duplicate id. Please change.");else {
+        addColor(color);
+        resetProps();
+      }
     };
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-    onSubmit: submit({
-      id: id,
-      name: name,
-      color: color,
-      rating: rating
-    })
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("fieldset", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "id:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    value: id,
-    onChange: setState(setId),
+    onSubmit: submit(currentColor)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("fieldset", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "id:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", _extends({}, idProps, {
     type: "nubmer",
     size: "4"
-  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "name:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    value: name,
-    onChange: setState(setName),
+  }))), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "name:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", _extends({}, nameProps, {
     type: "text",
     size: "12"
-  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "color:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    value: color,
-    onChange: setState(setColor),
+  }))), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "color:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", _extends({}, colorProps, {
     type: "color"
-  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "rating:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    value: rating,
-    onChange: setState(setRating),
+  }))), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "rating:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", _extends({}, ratingProps, {
     type: "nubmer",
     min: "0",
     max: "5",
     size: "12"
-  })), "\n", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }))), "\n", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "submit",
     value: "Add Color"
   })));

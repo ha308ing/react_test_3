@@ -1,33 +1,51 @@
 import React, { useState } from "react"
 import { useColors } from "./color-hooks";
 
+const useInput = (initialValue) => {
+  const [value, setValue] = useState(initialValue);
+  return [{ value, onChange: event => setValue(event.target.value) }, () => setValue(initialValue)]
+}
+
 export default function addColor() {
-  const [id, setId] = useState(1234);
-  const [name, setName] = useState("cyan");
-  const [color, setColor] = useState("#74ffff");
-  const [rating, setRating] = useState(3);
+  const [idProps, resetId] = useInput(1234);
+  const [nameProps, resetName] = useInput("cyan");
+  const [colorProps, resetColor] = useInput("#74ffff");
+  const [ratingProps, resetRating] = useInput(3);
 
   const { addColor, idList } = useColors();
 
-  const submit = color => event => {
-    event.preventDefault();
-    if (idList.includes(id))
-      alert("Duplicate id. Please change.")
-    else
-      addColor(color);
+  const resetProps = () => {
+    resetId();
+    resetName();
+    resetColor();
+    resetRating();
   }
 
-  const setState = f => event => f(event.target.value)
+  const currentColor = {
+    id: idProps.value,
+    name: nameProps.value,
+    color: colorProps.value,
+    rating: ratingProps.value,
+  }
+
+  const submit = color => event => {
+    event.preventDefault();
+    if (idList.includes(color.id))
+      alert("Duplicate id. Please change.")
+    else {
+      addColor(color);
+      resetProps();
+    }
+  }
 
   return (
-    <form onSubmit={submit({ id, name, color, rating })}>
+    <form onSubmit={submit(currentColor)}>
       <fieldset>
 
         <label>
           id:{" "}
           <input
-            value={id}
-            onChange={setState(setId)}
+            {...idProps}
             type="nubmer"
             size="4" />
         </label>{" "}
@@ -35,8 +53,7 @@ export default function addColor() {
         <label>
           name:{" "}
           <input
-            value={name}
-            onChange={setState(setName)}
+            {...nameProps}
             type="text"
             size="12" />
         </label>{" "}
@@ -44,16 +61,14 @@ export default function addColor() {
         <label>
           color:{" "}
           <input
-            value={color}
-            onChange={setState(setColor)}
+            {...colorProps}
             type="color" />
         </label>{" "}
 
         <label>
           rating:{" "}
           <input
-            value={rating}
-            onChange={setState(setRating)}
+            {...ratingProps}
             type="nubmer"
             min="0" max="5"
             size="12" />
