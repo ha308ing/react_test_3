@@ -2,19 +2,19 @@
   {
     "id": "0001",
     "name": "red",
-    "color": "red",
+    "color": "#f5452c",
     "rating": 1
   },
   {
     "id": "0002",
     "name": "green",
-    "color": "green",
+    "color": "#60e663",
     "rating": 3
   },
   {
     "id": "0003",
     "name": "blue",
-    "color": "blue",
+    "color": "#4354eb",
     "rating": 2
   }
 ]

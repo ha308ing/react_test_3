@@ -13,6 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ addColor)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _color_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./color-hooks */ "./js/color-hooks.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -26,71 +27,195 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-function addColor(_ref) {
-  var _ref$handleAddColor = _ref.handleAddColor,
-      handleAddColor = _ref$handleAddColor === void 0 ? function (f) {
-    return f;
-  } : _ref$handleAddColor;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+function addColor() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1234),
       _useState2 = _slicedToArray(_useState, 2),
       id = _useState2[0],
       setId = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("cyan"),
       _useState4 = _slicedToArray(_useState3, 2),
       name = _useState4[0],
       setName = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("#74ffff"),
       _useState6 = _slicedToArray(_useState5, 2),
       color = _useState6[0],
       setColor = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(3),
       _useState8 = _slicedToArray(_useState7, 2),
       rating = _useState8[0],
       setRating = _useState8[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("fieldset", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "id:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  var _useColors = (0,_color_hooks__WEBPACK_IMPORTED_MODULE_1__.useColors)(),
+      addColor = _useColors.addColor,
+      idList = _useColors.idList;
+
+  var submit = function submit(color) {
+    return function (event) {
+      event.preventDefault();
+      if (idList.includes(id)) alert("Duplicate id. Please change.");else addColor(color);
+    };
+  };
+
+  var setState = function setState(f) {
+    return function (event) {
+      return f(event.target.value);
+    };
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+    onSubmit: submit({
+      id: id,
+      name: name,
+      color: color,
+      rating: rating
+    })
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("fieldset", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "id:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     value: id,
-    onChange: function onChange(event) {
-      return setId(event.target.value);
-    },
+    onChange: setState(setId),
     type: "nubmer",
     size: "4"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "name:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "name:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     value: name,
-    onChange: function onChange(event) {
-      return setName(event.target.value);
-    },
+    onChange: setState(setName),
     type: "text",
     size: "12"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "color:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "color:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     value: color,
-    onChange: function onChange(event) {
-      return setColor(event.target.value);
-    },
+    onChange: setState(setColor),
     type: "color"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "rating:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "rating:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     value: rating,
-    onChange: function onChange(event) {
-      return setRating(event.target.value);
-    },
+    onChange: setState(setRating),
     type: "nubmer",
     min: "0",
     max: "5",
     size: "12"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: function onClick() {
-      return handleAddColor({
-        id: id,
-        name: name,
-        color: color,
+  })), "\n", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "submit",
+    value: "Add Color"
+  })));
+}
+
+/***/ }),
+
+/***/ "./js/app.js":
+/*!*******************!*\
+  !*** ./js/app.js ***!
+  \*******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ App)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _addColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addColor */ "./js/addColor.js");
+/* harmony import */ var _colorList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./colorList */ "./js/colorList.js");
+
+
+
+function App() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_addColor__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_colorList__WEBPACK_IMPORTED_MODULE_2__.default, null));
+}
+
+/***/ }),
+
+/***/ "./js/color-hooks.js":
+/*!***************************!*\
+  !*** ./js/color-hooks.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useColors": () => (/* binding */ useColors),
+/* harmony export */   "default": () => (/* binding */ ColorProvider)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _colorsData_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./colorsData.json */ "./js/colorsData.json");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var ColorContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();
+var useColors = function useColors() {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(ColorContext);
+};
+function ColorProvider(_ref) {
+  var children = _ref.children;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_colorsData_json__WEBPACK_IMPORTED_MODULE_1__),
+      _useState2 = _slicedToArray(_useState, 2),
+      colors = _useState2[0],
+      updateColors = _useState2[1];
+
+  var addColor = function addColor(c) {
+    return updateColors([c].concat(_toConsumableArray(colors)));
+  };
+
+  var removeColor = function removeColor(id) {
+    return updateColors(colors.filter(function (c) {
+      return c.id !== id;
+    }));
+  };
+
+  var rateColor = function rateColor(id, rating) {
+    updateColors(colors.map(function (c, i) {
+      return c.id === id ? _objectSpread(_objectSpread({}, c), {}, {
         rating: rating
-      });
+      }) : c;
+    }));
+  };
+
+  var setColor = function setColor(id, color) {
+    updateColors(colors.map(function (c, i) {
+      return c.id === id ? _objectSpread(_objectSpread({}, c), {}, {
+        color: color
+      }) : c;
+    }));
+  };
+
+  var idList = colors.map(function (c, i) {
+    return c.id;
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ColorContext.Provider, {
+    value: {
+      colors: colors,
+      addColor: addColor,
+      removeColor: removeColor,
+      rateColor: rateColor,
+      setColor: setColor,
+      idList: idList
     }
-  }, "Add Color"));
+  }, children);
 }
 
 /***/ }),
@@ -107,7 +232,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _ratingStars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ratingStars */ "./js/ratingStars.js");
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
+/* harmony import */ var _color_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color-hooks */ "./js/color-hooks.js");
+
 
 
 
@@ -115,22 +242,68 @@ function Color(_ref) {
   var id = _ref.id,
       name = _ref.name,
       color = _ref.color,
-      rating = _ref.rating,
-      _ref$removeColor = _ref.removeColor,
-      removeColor = _ref$removeColor === void 0 ? function (f) {
-    return f;
-  } : _ref$removeColor;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__.FaTrash, {
+      rating = _ref.rating;
+
+  var _useColors = (0,_color_hooks__WEBPACK_IMPORTED_MODULE_2__.useColors)(),
+      removeColor = _useColors.removeColor,
+      rateColor = _useColors.rateColor,
+      setColor = _useColors.setColor;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__.FaTrash, {
+    style: {
+      fontSize: .5 + "em"
+    },
     onClick: function onClick() {
       return removeColor(id);
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    style: {
-      height: 25 + 'px',
-      backgroundColor: color
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "color",
+    value: color // style={{
+    //   height: 25 + 'px',
+    //   width: 50 + 'px',
+    //   backgroundColor: color,
+    //   borderRadius: 4 + 'px'
+    // }}
+    ,
+    onChange: function onChange(event) {
+      return setColor(id, event.target.value);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ratingStars__WEBPACK_IMPORTED_MODULE_1__.default, {
-    rating: rating
+    rating: rating,
+    onRate: function onRate(rating) {
+      return rateColor(id, rating);
+    }
+  }));
+}
+
+/***/ }),
+
+/***/ "./js/colorList.js":
+/*!*************************!*\
+  !*** ./js/colorList.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ColorList)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _color__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./color */ "./js/color.js");
+/* harmony import */ var _color_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color-hooks */ "./js/color-hooks.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+function ColorList() {
+  var _useColors = (0,_color_hooks__WEBPACK_IMPORTED_MODULE_2__.useColors)(),
+      colors = _useColors.colors;
+
+  if (colors.length < 1) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "There is no colors");else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, colors.map(function (c, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_color__WEBPACK_IMPORTED_MODULE_1__.default, _extends({
+      key: c.id
+    }, c));
   }));
 }
 
@@ -162,7 +335,6 @@ function RatingStar(_ref) {
     return f;
   } : _ref$handleClick;
   var color = selected ? selectedColor : defaultColor;
-  console.log(color);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_ai__WEBPACK_IMPORTED_MODULE_1__.AiTwotoneStar, {
     style: {
       color: color
@@ -189,21 +361,13 @@ function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableTo
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -211,22 +375,20 @@ function RatingStars(_ref) {
   var _ref$rating = _ref.rating,
       rating = _ref$rating === void 0 ? 0 : _ref$rating,
       _ref$maxRating = _ref.maxRating,
-      maxRating = _ref$maxRating === void 0 ? 5 : _ref$maxRating;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(rating),
-      _useState2 = _slicedToArray(_useState, 2),
-      newRating = _useState2[0],
-      setRating = _useState2[1];
-
+      maxRating = _ref$maxRating === void 0 ? 5 : _ref$maxRating,
+      _ref$onRate = _ref.onRate,
+      onRate = _ref$onRate === void 0 ? function (f) {
+    return f;
+  } : _ref$onRate;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    rating: newRating
+    rating: rating
   }, _toConsumableArray(Array(maxRating)).map(function (n, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ratingStar__WEBPACK_IMPORTED_MODULE_1__.default, {
       key: i,
       handleClick: function handleClick() {
-        return setRating(i + 1);
+        return onRate(i + 1);
       },
-      selected: i < newRating ? true : false
+      selected: i < rating ? true : false
     });
   }));
 }
@@ -39766,7 +39928,7 @@ if (false) {} else {
   \****************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('[{"id":"0001","name":"red","color":"red","rating":1},{"id":"0002","name":"green","color":"green","rating":3},{"id":"0003","name":"blue","color":"blue","rating":2}]');
+module.exports = JSON.parse('[{"id":"0001","name":"red","color":"#f5452c","rating":1},{"id":"0002","name":"green","color":"#60e663","rating":3},{"id":"0003","name":"blue","color":"#4354eb","rating":2}]');
 
 /***/ })
 
@@ -39829,73 +39991,19 @@ module.exports = JSON.parse('[{"id":"0001","name":"red","color":"red","rating":1
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!**********************!*\
-  !*** ./js/colors.js ***!
-  \**********************/
+/*!*********************!*\
+  !*** ./js/index.js ***!
+  \*********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Colors)
-/* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _colorsData_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./colorsData.json */ "./js/colorsData.json");
-/* harmony import */ var _color__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color */ "./js/color.js");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app */ "./js/app.js");
+/* harmony import */ var _color_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color-hooks */ "./js/color-hooks.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _addColor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addColor */ "./js/addColor.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-
-
-function Colors() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_colorsData_json__WEBPACK_IMPORTED_MODULE_1__),
-      _useState2 = _slicedToArray(_useState, 2),
-      colors = _useState2[0],
-      updateColors = _useState2[1];
-
-  var addColor = function addColor(c) {
-    // console.log{{...c}, ...colors});
-    updateColors([c].concat(_toConsumableArray(colors)));
-  };
-
-  var handleRemoveColor = function handleRemoveColor(id) {
-    return updateColors(colors.filter(function (c) {
-      return c.id !== id;
-    }));
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_addColor__WEBPACK_IMPORTED_MODULE_4__.default, {
-    handleAddColor: addColor
-  }), colors.map(function (c, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_color__WEBPACK_IMPORTED_MODULE_2__.default, _extends({
-      key: c.id
-    }, c, {
-      removeColor: handleRemoveColor
-    }));
-  }));
-}
-react_dom__WEBPACK_IMPORTED_MODULE_3__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Colors, null), document.querySelector('#main'));
+(0,react_dom__WEBPACK_IMPORTED_MODULE_3__.render)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_color_hooks__WEBPACK_IMPORTED_MODULE_2__.default, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_app__WEBPACK_IMPORTED_MODULE_1__.default, null)), document.querySelector('#main'));
 })();
 
 /******/ })()
